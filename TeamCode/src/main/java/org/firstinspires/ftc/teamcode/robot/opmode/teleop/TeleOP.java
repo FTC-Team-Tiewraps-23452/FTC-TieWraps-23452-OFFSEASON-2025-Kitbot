@@ -12,13 +12,11 @@ import org.firstinspires.ftc.teamcode.robot.subsystem.MecanumDrivetrain;
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
 
-    private MecanumDrivetrain mecanumDrivetrain;
 
     @Override
     public void init() {
         telemetry.addData("Status", "Initializing");
 
-        mecanumDrivetrain = new MecanumDrivetrain(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
     }
@@ -36,19 +34,6 @@ public class TeleOP extends OpMode {
 
     @Override
     public void loop() {
-        //drivetrain
-      if (gamepad1.left_bumper){
-          double y = -gamepad1.left_stick_y; // Remember, Y stick is reversed!
-          double x = gamepad1.left_stick_x;
-          double rx = -gamepad1.right_stick_x;
-          mecanumDrivetrain.mecanumDrive(x, y, rx);
-      } else {
-          double y = -gamepad1.left_stick_y; // Remember, Y stick is reversed!
-          double x = gamepad1.left_stick_x;
-          double rx = -gamepad1.right_stick_x;
-          mecanumDrivetrain.mecanumDrive(x / 4,y / 4,rx / 4);
-      }
-
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
 
