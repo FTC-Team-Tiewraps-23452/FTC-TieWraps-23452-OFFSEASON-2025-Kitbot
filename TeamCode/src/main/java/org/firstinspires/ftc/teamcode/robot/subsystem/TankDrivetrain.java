@@ -36,12 +36,10 @@ private final DcMotor leftDrive;
 
     }
 
-    public void tankDrive(double x, double y, double rx){
+    public void tankDrive(double drive, double turn){
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  -gamepad1.right_stick_x;
         double leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
