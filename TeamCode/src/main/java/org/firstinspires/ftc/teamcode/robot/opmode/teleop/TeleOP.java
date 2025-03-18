@@ -5,13 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot.subsystem.MecanumDrivetrain;
+import org.firstinspires.ftc.teamcode.robot.subsystem.Arm;
 
 
 @TeleOp(name="TeleOP-IntoTheDeep-", group="Iterative Opmode")
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
-
+    private Arm arm;
 
     @Override
     public void init() {
@@ -23,6 +23,7 @@ public class TeleOP extends OpMode {
 
     @Override
     public void init_loop() {
+        arm = new Arm(hardwareMap);
     }
 
     @Override
