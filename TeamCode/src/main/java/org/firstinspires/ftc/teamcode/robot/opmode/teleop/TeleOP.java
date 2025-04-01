@@ -8,16 +8,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.robot.subsystem.TankDrivetrain;
 
 
+
 @TeleOp(name="TeleOP-IntoTheDeep-", group="Iterative Opmode")
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
 
+
     private TankDrivetrain tankDrivetrain;
+
 
     @Override
     public void init() {
         telemetry.addData("Status", "Initializing");
 
+        motorTest = new MotorTest(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
 
@@ -39,7 +43,6 @@ public class TeleOP extends OpMode {
     public void loop() {
 
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-
         tankDrivetrain.tankDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
     }
 
