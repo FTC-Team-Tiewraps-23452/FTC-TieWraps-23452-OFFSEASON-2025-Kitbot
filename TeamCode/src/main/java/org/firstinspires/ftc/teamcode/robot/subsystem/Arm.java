@@ -14,4 +14,10 @@ public class Arm {
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+
+    public void goToPosition(int position, double speed){
+        armMotor.setTargetPosition(position);
+        armMotor.setPower(speed);
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
 }
