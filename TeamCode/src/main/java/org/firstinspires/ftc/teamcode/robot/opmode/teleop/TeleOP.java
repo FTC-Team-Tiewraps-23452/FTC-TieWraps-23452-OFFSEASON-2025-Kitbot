@@ -21,7 +21,6 @@ public class TeleOP extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initializing");
 
-        motorTest = new MotorTest(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
 
@@ -41,7 +40,6 @@ public class TeleOP extends OpMode {
 
     @Override
     public void loop() {
-
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         tankDrivetrain.tankDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
     }
