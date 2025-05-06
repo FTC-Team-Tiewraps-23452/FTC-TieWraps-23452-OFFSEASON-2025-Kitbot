@@ -17,7 +17,7 @@ public class TeleOP extends OpMode {
     int ARM_WALL_GRAB_POSITION = 1100;
     int ARM_HOVER_HIGH_POSITION = 2600;
     int ARM_LOW_BASKET_POSITION = 2500;
-    double ARM_SPEED = 0.5;
+    int ARM_INIT_POSITION = 300;
 
     @Override
     public void init() {
@@ -44,19 +44,19 @@ public class TeleOP extends OpMode {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
 
         if (gamepad1.a){
-            arm.goToPosition(ARM_INTAKE_POSITION, ARM_SPEED);
-        }
-
-        if (gamepad1.b){
-            arm.goToPosition(ARM_WALL_GRAB_POSITION, ARM_SPEED);
-        }
-
-        if (gamepad1.y){
-            arm.goToPosition(ARM_HOVER_HIGH_POSITION, ARM_SPEED);
-        }
-
-        if (gamepad1.x){
-            arm.goToPosition(ARM_LOW_BASKET_POSITION, ARM_SPEED);
+            arm.goToPosition(ARM_INTAKE_POSITION);
+        } else if (gamepad1.b){
+            arm.goToPosition(ARM_WALL_GRAB_POSITION);
+        } else if (gamepad1.y){
+            arm.goToPosition(ARM_HOVER_HIGH_POSITION);
+        } else if (gamepad1.x){
+            arm.goToPosition(ARM_LOW_BASKET_POSITION);
+        } else if (gamepad1.dpad_up){
+            arm.moveArm(0.5);
+        } else if (gamepad1.dpad_down){
+            arm.moveArm(-0.5);
+        } else if (gamepad1.left_bumper){
+            arm.goToPosition(ARM_INIT_POSITION);
         }
     }
 
