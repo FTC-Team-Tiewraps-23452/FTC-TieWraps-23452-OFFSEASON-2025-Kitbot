@@ -12,12 +12,16 @@ import org.firstinspires.ftc.teamcode.robot.subsystem.Arm;
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
     private Arm arm;
+    private boolean lastGrab = false;
+    private boolean lastHook = false;
 
     int ARM_INTAKE_POSITION = 450;
     int ARM_WALL_GRAB_POSITION = 1100;
     int ARM_HOVER_HIGH_POSITION = 2600;
     int ARM_LOW_BASKET_POSITION = 2500;
     int ARM_INIT_POSITION = 300;
+    int ARM_WALL_UNHOOK_POSITION = 1700;
+    int ARM_CLIP_HIGH_POSITION = 2100;
 
     @Override
     public void init() {
@@ -45,9 +49,13 @@ public class TeleOP extends OpMode {
 
         if (gamepad1.a){
             arm.goToPosition(ARM_INTAKE_POSITION);
-        } else if (gamepad1.b){
-            arm.goToPosition(ARM_WALL_GRAB_POSITION);
-        } else if (gamepad1.y){
+        } else if (gamepad1.b && !lastGrab){
+            if (arm.position() == ARM_WALL_GRAB_POSITION) {
+                arm.goToPosition(ARM_WALL_UNHOOK_POSITION);
+            } else {
+                arm.goToPosition(ARM_WALL_GRAB_POSITION);
+            }
+        } else if (gamepad1.y && lastHook){
             arm.goToPosition(ARM_HOVER_HIGH_POSITION);
         } else if (gamepad1.x){
             arm.goToPosition(ARM_LOW_BASKET_POSITION);
@@ -58,6 +66,9 @@ public class TeleOP extends OpMode {
         } else if (gamepad1.left_bumper){
             arm.goToPosition(ARM_INIT_POSITION);
         }
+
+        lastGrab = gamepad1.b;
+        lastHook = gamepad1.y;
     }
 
     @Override

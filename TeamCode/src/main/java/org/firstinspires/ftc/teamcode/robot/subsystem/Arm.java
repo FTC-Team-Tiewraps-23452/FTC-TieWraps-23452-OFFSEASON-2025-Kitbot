@@ -25,4 +25,8 @@ public class Arm {
     public void moveArm(double speed) {
         armMotor.setPower(speed);
     }
+
+    public int position() {
+        return armMotor.getCurrentPosition();
+    }
 }
