@@ -50,13 +50,17 @@ public class TeleOP extends OpMode {
         if (gamepad1.a){
             arm.goToPosition(ARM_INTAKE_POSITION);
         } else if (gamepad1.b && !lastGrab){
-            if (arm.position() == ARM_WALL_GRAB_POSITION) {
+            if (arm.position() >= ARM_WALL_GRAB_POSITION - 10 && arm.position() <= ARM_WALL_GRAB_POSITION + 10) {
                 arm.goToPosition(ARM_WALL_UNHOOK_POSITION);
             } else {
                 arm.goToPosition(ARM_WALL_GRAB_POSITION);
             }
-        } else if (gamepad1.y && lastHook){
-            arm.goToPosition(ARM_HOVER_HIGH_POSITION);
+        } else if (gamepad1.y && !lastHook){
+            if (arm.position() >= ARM_HOVER_HIGH_POSITION - 10 && arm.position() <= ARM_WALL_GRAB_POSITION + 10) {
+                arm.goToPosition(ARM_CLIP_HIGH_POSITION);
+            } else {
+                arm.goToPosition(ARM_HOVER_HIGH_POSITION);
+            }
         } else if (gamepad1.x){
             arm.goToPosition(ARM_LOW_BASKET_POSITION);
         } else if (gamepad1.dpad_up){
