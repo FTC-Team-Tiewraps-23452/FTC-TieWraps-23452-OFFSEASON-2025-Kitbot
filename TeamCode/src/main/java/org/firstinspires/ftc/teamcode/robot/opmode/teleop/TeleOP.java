@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystem.TankDrivetrain;
 
 
 
-@TeleOp(name="TeleOP-IntoTheDeep-", group="Iterative Opmode")
+@TeleOp(name="TeleOP-IntoTheDeep-1", group="Iterative Opmode")
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
 
