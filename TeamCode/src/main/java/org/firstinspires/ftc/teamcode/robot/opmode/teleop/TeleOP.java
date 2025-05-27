@@ -5,17 +5,18 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot.subsystem.TankDrivetrain;
+import org.firstinspires.ftc.teamcode.robot.subsystem.Wrist;
 
 
 
 @TeleOp(name="TeleOP-IntoTheDeep-", group="Iterative Opmode")
 public class TeleOP extends OpMode {
     private final ElapsedTime runtime = new ElapsedTime();
+    private Wrist wrist;
 
-
-    private TankDrivetrain tankDrivetrain;
-
+    int WRIST_INIT_POSITION = 0;
+    int WRIST_SAMPLE_POSITION = 270;
+    int WRIST_SPEC_POSITION = 10;
 
     @Override
     public void init() {
@@ -24,11 +25,12 @@ public class TeleOP extends OpMode {
 
         telemetry.addData("Status", "Initialized");
 
-        tankDrivetrain = new TankDrivetrain(hardwareMap);
+        wrist = new Wrist(hardwareMap);
     }
 
     @Override
     public void init_loop() {
+        wrist = new Wrist(hardwareMap);
     }
 
     @Override
@@ -41,7 +43,6 @@ public class TeleOP extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        tankDrivetrain.tankDrive(-gamepad1.left_stick_y, gamepad1.right_stick_x);
     }
 
     @Override
